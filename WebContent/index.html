@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html data-ng-app="restApp">
+<head>
+<meta charset="UTF-8">
+<title>RESTApp | Home</title>
+</head>
+<body data-ng-controller="CustomerCtrl as customerVm">
+
+	<button data-ng-click="customerVm.people">GET ALL Employees</button>
+	<hr>
+	<div data-ng-repeat="(k,v) in customerVm.people">
+	      <p> Your confirmation code is : >{{k}} </p>
+	      <p> Value is : >{{v.confirmCode}}</p>
+	      <p> Your table status is : {{v.status}}</p>
+	</div>
+	<hr>
+	
+	<button data-ng-click="customerVm.getEmp()">GET Employee</button>
+	<hr>
+	
+	<form name="editform" data-ng-submit="customerVm.updateEmp()">
+	 
+		<div>
+			<label>First Name</label>
+			<input type="text" data-ng-model="customerVm.editUser.firstName">
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" data-ng-model="customerVm.editUser.lastName">
+		</div>
+		<div>
+			<label>Date</label>
+			<input type="datetime-local" data-ng-model="customerVm.editUser.reserveDate">
+		</div>
+		<div>
+			<label>Party Size</label>
+			<input type="text" data-ng-model="customerVm.editUser.partySize">
+		</div>
+		<div>
+			<label>Phone</label>
+			<input type="text" data-ng-model="customerVm.editUser.phoneNumber">
+		</div>
+		<div>
+		<input type="text" placeholder="Confirmation Code" data-ng-model="customerVm.confirmCode" required>
+		</div>
+	<button type="submit">Update Employee</button>
+	</form>
+	<hr>
+	<form name ="reserveform" data-ng-submit="customerVm.reserveUser()">
+		<div>
+			<label>First Name</label>
+			<input type="text" data-ng-model="customerVm.newUser.firstName">
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" data-ng-model="customerVm.newUser.lastName">
+		</div>
+		<div>
+			<label>Date</label>
+			<input type="datetime-local" data-ng-model="customerVm.newUser.reserveDate">
+		</div>
+		<div>
+			<label>Party Size</label>
+			<input type="text" data-ng-model="customerVm.newUser.partySize">
+		</div>
+		<div>
+			<label>Phone</label>
+			<input type="text" data-ng-model="customerVm.newUser.phoneNumber">
+		</div>
+		
+						
+		<div>
+			<button type="submit">Add Employee</button>
+		</div>
+	</form>
+	<hr>
+	<form data-ng-submit = "customerVm.login()" data-ng-show="!customerVm.loggedIn">
+	 <div>
+			<label>Username</label>
+			<input type="text" data-ng-model="customerVm.loginOwner.username">
+		</div>
+		
+		<div>
+			<label>password</label>
+			<input type="password" data-ng-model="customerVm.loginOwner.password">
+		</div>
+	  
+	  <div>
+			<button type="submit">Login</button>
+		</div>
+	  
+	</form>
+	 <p data-ng-show="customerVm.loggedIn"> You are logged in!</p>
+	
+	<div class="container">
+  <h3>Posts</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="p in postsVm.posts">
+        <td>{{p.id}}</td>
+        <td>{{p.title}}</td>
+        <td>{{p.userId}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+	<script src="https://code.angularjs.org/1.3.15/angular.min.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers/main-ctrl.js"></script>
+	<script src = "services/data-service.js"></script>
+
+</body>
+</html>

@@ -1,7 +1,10 @@
 package com.restro.model;
 
-import java.util.Date;
+import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
 	
 	private int confirmCode;
@@ -9,8 +12,8 @@ public class Customer {
 	private String lastName;
 	private Date reserveDate;
 	private int partySize;
-	private String phone;
-	private String status;
+	private String phoneNumber;
+	//private String status;
 	
 	public int getConfirmCode() {
 		return confirmCode;
@@ -42,18 +45,19 @@ public class Customer {
 	public void setPartySize(int partySize) {
 		this.partySize = partySize;
 	}
-	public String getPhone() {
-		return phone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public String getStatus() {
+	
+	/*public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
+	}*/
 
 
 }
